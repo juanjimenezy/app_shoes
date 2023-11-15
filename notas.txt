@@ -1,0 +1,33 @@
+PESTAÑAS
+1. Inicio
+2. Registrar
+3. Olvide Contraseña
+4. Datos usuario
+5. Escoger Marca (nike, adidas, jordan)
+6. Catalogo
+7. Zapatos
+8. Historial Compras
+
+
+TABLAS:
+* tbl_usuarios
+* tbl_marcas
+* tbl_catalogo (Categorias)
+* tbl_zapatos
+* tbl_zapatos_galeria
+* tbl_compra
+* tbl_compra_detalles
+
+
+API:
+https://proyeccionhumanainternacional.com/app/api.php
+
+* URL solo funcion en POST
+* Hay que enviar una variable Action para recibir la funcion
+* Ejempleo: api.php?Action=Registrar
+
+CONSUMO API:
+1. Action = RegistrarUsuario
+ - nombre
+
+
