@@ -25,7 +25,9 @@ class Principal extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/Login");
+                          },
                           child: const Text("Sign In", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")),
                         ),
                         const SizedBox(width: 10.0),
@@ -37,7 +39,9 @@ class Principal extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.0), // Forma del botón
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/Register");
+                          },
                           child: const Text("Sign Up", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                         )
                       ],

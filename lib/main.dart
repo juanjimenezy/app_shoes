@@ -1,4 +1,6 @@
+import 'package:app_shoes/login/login.dart';
 import 'package:app_shoes/principal.dart';
+import 'package:app_shoes/register/register.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const Principal(),
+        "/Register": (context) => const Register(),
+        "/Login": (context) => const Login(),
       },
     );
   }
