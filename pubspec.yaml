@@ -62,6 +62,9 @@ flutter:
   assets:
      - assets/img/background1.png
      - assets/img/logo.png
+     - assets/img/nike.png
+     - assets/img/adidas.png
+     - assets/img/puma.png
   fonts:
     - family: PTSerif
       fonts:

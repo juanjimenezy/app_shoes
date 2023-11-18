@@ -18,6 +18,35 @@ class _HomeState extends State<Home> {
             fit: BoxFit.cover, // Ajustar la imagen al tamaño del contenedor
           ),
         ),
+        child: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 150,
+                height: 150,
+                child: Image(
+                  image: AssetImage('assets/img/nike.png'),
+                ),
+              ),
+              SizedBox(
+                width: 150,
+                height: 150,
+                child: Image(
+                  image: AssetImage('assets/img/adidas.png'),
+                ),
+              ),
+              SizedBox(
+                width: 150,
+                height: 150,
+                child: Image(
+                  image: AssetImage('assets/img/puma.png'),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
