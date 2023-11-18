@@ -55,21 +55,25 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   const SizedBox(height: 10.0),
-                  SizedBox(
-                    width: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: const EdgeInsets.all(16.0), // Espaciado interno
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0), // Forma del botón
-                        ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white.withOpacity(0.82),
+                      padding: const EdgeInsets.all(16.0), // Espaciado interno
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Forma del botón
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/Register");
-                      },
-                      child: const Text("Login", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                     ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/Home");
+                    },
+                    child: const Text("Login", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
+                  ),
+                  const SizedBox(height: 10.0),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/Register");
+                    },
+                    child: const Text("Registrarse", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")),
                   )
                 ],
               )

@@ -1,3 +1,4 @@
+import 'package:app_shoes/home/home.dart';
 import 'package:app_shoes/login/login.dart';
 import 'package:app_shoes/principal.dart';
 import 'package:app_shoes/register/register.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => const Principal(),
         "/Register": (context) => const Register(),
         "/Login": (context) => const Login(),
+        "/Home": (context) => const Home(),
       },
     );
   }
