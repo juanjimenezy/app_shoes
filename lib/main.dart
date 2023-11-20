@@ -5,11 +5,11 @@ import 'package:app_shoes/register/register.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppShoes());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AppShoes extends StatelessWidget {
+  const AppShoes({super.key});
 
   @override
   Widget build(BuildContext context) {
