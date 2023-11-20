@@ -86,14 +86,14 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/Login");
+                      Navigator.pop(context);
                     },
                     child: const Text("Registrar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
                   const SizedBox(height: 10.0),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/Login");
+                      Navigator.pop(context);
                     },
                     child: const Text("Volver", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")),
                   )

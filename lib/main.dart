@@ -2,8 +2,9 @@ import 'package:app_shoes/home/home.dart';
 import 'package:app_shoes/login/login.dart';
 import 'package:app_shoes/principal.dart';
 import 'package:app_shoes/profile/profile.dart';
-import 'package:app_shoes/recoverpassword/recover.dart';
-import 'package:app_shoes/register/register.dart';
+import 'package:app_shoes/login/recover.dart';
+import 'package:app_shoes/login/register.dart';
+import 'package:app_shoes/shop/history.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class AppShoes extends StatelessWidget {
         "/Recover": (context) => const RecoverPassword(),
         "/Home": (context) => const Home(),
         "/Profile": (context) => const Profile(),
+        "/History": (context) => const ShopHistory(),
       },
     );
   }

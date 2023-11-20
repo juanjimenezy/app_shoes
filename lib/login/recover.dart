@@ -53,7 +53,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/Home");
+                      Navigator.pushNamed(context, "/Login");
                     },
                     child: const Text("Recuperar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
