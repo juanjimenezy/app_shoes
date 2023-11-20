@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class RecoverPassword extends StatefulWidget {
+  const RecoverPassword({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<RecoverPassword> createState() => _RecoverPasswordState();
 }
 
-class _LoginState extends State<Login> {
+class _RecoverPasswordState extends State<RecoverPassword> {
   TextEditingController userController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +40,7 @@ class _LoginState extends State<Login> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: userController,
-                      decoration: const InputDecoration(hintText: "Usuario", border: InputBorder.none),
-                    ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Container(
-                    width: 50,
-                    color: Colors.purple.withOpacity(0.2),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: TextField(
-                      controller: passwordController,
-                      decoration: const InputDecoration(hintText: "Contraseña", border: InputBorder.none),
+                      decoration: const InputDecoration(hintText: "Email", border: InputBorder.none),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -66,21 +55,7 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       Navigator.pushNamed(context, "/Home");
                     },
-                    child: const Text("Login", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
-                  ),
-                  const SizedBox(height: 10.0),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/Register");
-                    },
-                    child: const Text("Registrarse", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")),
-                  ),
-                  const SizedBox(height: 10.0),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/Recover");
-                    },
-                    child: const Text("¿Olvidates tu contraseña?", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif", decoration: TextDecoration.underline)),
+                    child: const Text("Recuperar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
                 ],
               )
