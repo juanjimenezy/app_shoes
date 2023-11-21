@@ -10,9 +10,9 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   TextEditingController nombreController = TextEditingController();
-  TextEditingController departamentoController = TextEditingController();
+  TextEditingController paisController = TextEditingController();
   TextEditingController ciudadController = TextEditingController();
-  TextEditingController barrioController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController direccionController = TextEditingController();
 
   @override
@@ -61,8 +61,8 @@ class _ProfileState extends State<Profile> {
                     color: Colors.purple.withOpacity(0.2),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
-                      controller: departamentoController,
-                      decoration: const InputDecoration(hintText: "Departamento", border: InputBorder.none),
+                      controller: paisController,
+                      decoration: const InputDecoration(hintText: "Pais", border: InputBorder.none),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -81,8 +81,8 @@ class _ProfileState extends State<Profile> {
                     color: Colors.purple.withOpacity(0.2),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
-                      controller: barrioController,
-                      decoration: const InputDecoration(hintText: "Barrio", border: InputBorder.none),
+                      controller: emailController,
+                      decoration: const InputDecoration(hintText: "Email", border: InputBorder.none),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -117,7 +117,28 @@ class _ProfileState extends State<Profile> {
                     child: const Text("Volver", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")),
                   )
                 ],
-              )
+              ),
+              Positioned(
+                bottom: 10.0,
+                left: 0,
+                right: 0,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, "/");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 228, 93, 84), // Color del botón de cerrar sesión
+                    padding: const EdgeInsets.all(16.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                  child: const Text(
+                    "Cerrar Sesión",
+                    style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif"),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

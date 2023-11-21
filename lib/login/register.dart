@@ -9,7 +9,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   TextEditingController nombreController = TextEditingController();
-  TextEditingController userController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController rePasswordController = TextEditingController();
 
@@ -42,8 +42,8 @@ class _RegisterState extends State<Register> {
                     width: 50,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
-                      controller: userController,
-                      decoration: const InputDecoration(hintText: "Usuario", border: InputBorder.none),
+                      controller: emailController,
+                      decoration: const InputDecoration(hintText: "Email", border: InputBorder.none),
                     ),
                   ),
                   const SizedBox(height: 10.0),

@@ -1,5 +1,5 @@
 PESTAÑAS
-1. Inicio
+1. Inicio 
 2. Registrar
 3. Olvide Contraseña
 4. Datos usuario

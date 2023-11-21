@@ -8,7 +8,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController userController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -40,8 +40,8 @@ class _LoginState extends State<Login> {
                     width: 50,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
-                      controller: userController,
-                      decoration: const InputDecoration(hintText: "Usuario", border: InputBorder.none),
+                      controller: emailController,
+                      decoration: const InputDecoration(hintText: "Email", border: InputBorder.none),
                     ),
                   ),
                   const SizedBox(height: 10.0),

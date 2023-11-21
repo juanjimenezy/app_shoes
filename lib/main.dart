@@ -4,6 +4,7 @@ import 'package:app_shoes/principal.dart';
 import 'package:app_shoes/profile/profile.dart';
 import 'package:app_shoes/login/recover.dart';
 import 'package:app_shoes/login/register.dart';
+import 'package:app_shoes/shop/catalogue.dart';
 import 'package:app_shoes/shop/history.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,7 @@ class AppShoes extends StatelessWidget {
         "/Recover": (context) => const RecoverPassword(),
         "/Home": (context) => const Home(),
         "/Profile": (context) => const Profile(),
+        "/Catalogue": (context) => const Catalogue(),
         "/History": (context) => const ShopHistory(),
       },
     );
