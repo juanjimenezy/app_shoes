@@ -18,19 +18,22 @@ class CustomBottomAppBar extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.pushReplacementNamed(context, "/Home");
+                Navigator.pushNamed(
+                  context,
+                  "/Home",
+                );
               },
               child: const Icon(Icons.home),
             ),
             InkWell(
               onTap: () {
-                Navigator.pushReplacementNamed(context, "/History");
+                Navigator.pushNamed(context, "/History");
               },
               child: const Icon(Icons.history),
             ),
             InkWell(
               onTap: () {
-                Navigator.pushReplacementNamed(context, "/Profile");
+                Navigator.pushNamed(context, "/Profile");
               },
               child: const Icon(Icons.person),
             ),

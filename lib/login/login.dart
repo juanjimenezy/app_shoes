@@ -1,3 +1,4 @@
+import 'package:app_shoes/components/messageDialog.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -10,6 +11,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final List<Map<String, dynamic>> usuario = [
+    {"id": 1, "email": "prueba@gmail.com", "password": "123456"}
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +69,11 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/Home");
+                      if (validarUsuario(emailController.text, passwordController.text)) {
+                        Navigator.pushNamed(context, "/Home");
+                      } else {
+                        MessageDialog.mostrar(context, "Alerta!", "Email o contraseña incorrectos.");
+                      }
                     },
                     child: const Text("Login", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
@@ -89,5 +98,12 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  validarUsuario(String inEmail, String inPassword) {
+    if (inEmail != usuario[0]["email"] || inPassword != usuario[0]["password"]) {
+      return false; //TODO modo dev: true
+    }
+    return true;
   }
 }

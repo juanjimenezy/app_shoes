@@ -1,4 +1,5 @@
-import 'package:app_shoes/bar/buttonBar.dart';
+import 'package:app_shoes/components/buttonBar.dart';
+import 'package:app_shoes/components/messageDialog.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -105,14 +106,19 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/Home");
+                      String r = validarCampos(nombreController.text, paisController.text, ciudadController.text, emailController.text, direccionController.text);
+                      if (r == "S") {
+                        Navigator.pushNamed(context, "/Home");
+                      } else {
+                        MessageDialog.mostrar(context, "Alerta", r);
+                      }
                     },
                     child: const Text("Actualizar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
                   const SizedBox(height: 10.0),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/Home");
+                      Navigator.pop(context);
                     },
                     child: const Text("Volver", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")),
                   )
@@ -145,5 +151,12 @@ class _ProfileState extends State<Profile> {
       ),
       bottomNavigationBar: CustomBottomAppBar(),
     );
+  }
+
+  validarCampos(String nombre, String pais, String ciudad, String email, String direccion) {
+    if (nombre.isEmpty || email.isEmpty || pais.isEmpty || ciudad.isEmpty || direccion.isEmpty) {
+      return "Completar todos los campos.";
+    }
+    return "S";
   }
 }

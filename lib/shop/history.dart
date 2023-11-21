@@ -1,4 +1,4 @@
-import 'package:app_shoes/bar/buttonBar.dart';
+import 'package:app_shoes/components/buttonBar.dart';
 import 'package:flutter/material.dart';
 
 class ShopHistory extends StatefulWidget {

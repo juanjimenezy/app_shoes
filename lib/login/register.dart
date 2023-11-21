@@ -1,3 +1,4 @@
+import 'package:app_shoes/components/messageDialog.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -86,7 +87,12 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                      String r = validarCampos(nombreController.text, emailController.text, passwordController.text, rePasswordController.text);
+                      if (r != "S") {
+                        MessageDialog.mostrar(context, "Alerta!", r);
+                      } else {
+                        Navigator.pop(context);
+                      }
                     },
                     child: const Text("Registrar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
@@ -104,5 +110,15 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  validarCampos(String nombre, String email, String password, String rePassword) {
+    if (nombre.isEmpty || email.isEmpty || password.isEmpty || rePassword.isEmpty) {
+      return "Completar todos los campos.";
+    }
+    if (password != rePassword) {
+      return "Contraseñas distintas.";
+    }
+    return "S";
   }
 }

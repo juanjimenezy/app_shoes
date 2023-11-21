@@ -1,3 +1,4 @@
+import 'package:app_shoes/components/messageDialog.dart';
 import 'package:flutter/material.dart';
 
 class RecoverPassword extends StatefulWidget {
@@ -8,7 +9,7 @@ class RecoverPassword extends StatefulWidget {
 }
 
 class _RecoverPasswordState extends State<RecoverPassword> {
-  TextEditingController userController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                     width: 50,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
-                      controller: userController,
+                      controller: emailController,
                       decoration: const InputDecoration(hintText: "Email", border: InputBorder.none),
                     ),
                   ),
@@ -53,7 +54,11 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/Login");
+                      if (validarUsuario(emailController.text)) {
+                        Navigator.pushNamed(context, "/Login");
+                      } else {
+                        MessageDialog.mostrar(context, "Alerta!", "Completar campos.");
+                      }
                     },
                     child: const Text("Recuperar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
@@ -64,5 +69,12 @@ class _RecoverPasswordState extends State<RecoverPassword> {
         ),
       ),
     );
+  }
+
+  validarUsuario(String inEmail) {
+    if (inEmail.isEmpty) {
+      return false;
+    }
+    return true;
   }
 }
