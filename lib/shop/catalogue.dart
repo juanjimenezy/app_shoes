@@ -1,5 +1,6 @@
 import 'package:app_shoes/bar/buttonBar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Catalogue extends StatefulWidget {
   const Catalogue({super.key});
@@ -13,6 +14,21 @@ class _CatalogueState extends State<Catalogue> {
   Widget build(BuildContext context) {
     final String arg = ModalRoute.of(context)!.settings.arguments as String;
 
+    final List<Map<String, dynamic>> zapatos = [
+      {"id": 1, "nombre": "AF1", "idImg": "nikeaf1"},
+      {"id": 2, "nombre": "Jordan", "idImg": "nikejordan"},
+      {"id": 3, "nombre": "AirMax", "idImg": "nikeairmax"},
+      {"id": 4, "nombre": "Dinamyc Fit", "idImg": "nikedinamicfit"},
+      {"id": 1, "nombre": "AF1", "idImg": "nikeaf1"},
+      {"id": 2, "nombre": "Jordan", "idImg": "nikejordan"},
+      {"id": 3, "nombre": "AirMax", "idImg": "nikeairmax"},
+      {"id": 4, "nombre": "Dinamyc Fit", "idImg": "nikedinamicfit"},
+      {"id": 1, "nombre": "AF1", "idImg": "nikeaf1"},
+      {"id": 2, "nombre": "Jordan", "idImg": "nikejordan"},
+      {"id": 3, "nombre": "AirMax", "idImg": "nikeairmax"},
+      {"id": 4, "nombre": "Dinamyc Fit", "idImg": "nikedinamicfit"},
+    ];
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -21,17 +37,59 @@ class _CatalogueState extends State<Catalogue> {
             fit: BoxFit.cover, // Ajustar la imagen al tamaño del contenedor
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                arg,
-                style: TextStyle(fontSize: 20, fontFamily: "PTSerif", color: Colors.white),
-              )
-            ],
-          ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 40.0),
+                Image(
+                  image: AssetImage(
+                    'assets/img/${arg}_logo.png',
+                  ),
+                  height: 150,
+                  width: 150,
+                ),
+              ],
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, // Dos elementos por fila
+                  crossAxisSpacing: 8.0, // Espaciado horizontal entre elementos
+                  mainAxisSpacing: 8.0, // Espaciado vertical entre elementos
+                ),
+                itemCount: zapatos.length,
+                itemBuilder: (context, index) {
+                  final zapato = zapatos[index];
+                  return InkWell(
+                    onTap: () {
+                      // Acción al hacer clic en el elemento
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.purple.withOpacity(0.2), // Hace que el fondo sea transparente
+                        //border: Border.all(color: Colors.black), // Puedes agregar un borde si lo deseas
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/img/${zapato["idImg"]}.png',
+                            width: 150,
+                            height: 100,
+                          ),
+                          const SizedBox(height: 8.0),
+                          Text(zapato["nombre"]),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: CustomBottomAppBar(),

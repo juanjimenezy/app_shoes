@@ -65,6 +65,14 @@ flutter:
      - assets/img/nike.png
      - assets/img/adidas.png
      - assets/img/puma.png
+     - assets/img/adidas_logo.png
+     - assets/img/nike_logo.png
+     - assets/img/puma_logo.png
+     - assets/img/nikeaf1.png
+     - assets/img/nikejordan.png
+     - assets/img/nikedinamicfit.png
+     - assets/img/nikeairmax.png
+     
   fonts:
     - family: PTSerif
       fonts:
