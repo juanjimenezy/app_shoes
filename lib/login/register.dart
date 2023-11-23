@@ -1,4 +1,5 @@
 import 'package:app_shoes/components/messageDialog.dart';
+import 'package:app_shoes/login/registerService.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -86,12 +87,13 @@ class _RegisterState extends State<Register> {
                         borderRadius: BorderRadius.circular(20.0), // Forma del botón
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       String r = validarCampos(nombreController.text, emailController.text, passwordController.text, rePasswordController.text);
                       if (r != "S") {
                         MessageDialog.mostrar(context, "Alerta!", r);
                       } else {
-                        Navigator.pop(context);
+                        await registrarUsuario(nombreController.text, "", "", "", emailController.text, passwordController.text, context);
+                        //Navigator.pop(context);
                       }
                     },
                     child: const Text("Registrar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
@@ -120,5 +122,28 @@ class _RegisterState extends State<Register> {
       return "Contraseñas distintas.";
     }
     return "S";
+  }
+
+  registrarUsuario(String nombre, String pais, String ciudad, String direccion, String email, String clave, context) async {
+    Map<String, dynamic> response = await RegisterService.registrarUsuario(nombre: nombre, pais: pais, ciudad: ciudad, direccion: direccion, correo: email, clave: clave);
+    if (response.containsKey('Validacion')) {
+      String validacion = response["Validacion"];
+      if (validacion == "Error") {
+        String mensaje = response["Mensaje"];
+        MessageDialog.mostrar(context, validacion, mensaje);
+      }
+
+      if (validacion == "OK") {
+        MessageDialog.mostrar(context, "Mensaje", "Registro Exitoso.");
+        limpiar();
+      }
+    }
+  }
+
+  limpiar() {
+    emailController.text = "";
+    nombreController.text = "";
+    passwordController.text = "";
+    rePasswordController.text = "";
   }
 }

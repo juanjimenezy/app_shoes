@@ -1,4 +1,5 @@
 import 'package:app_shoes/components/messageDialog.dart';
+import 'package:app_shoes/login/loginService.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -11,10 +12,6 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  final List<Map<String, dynamic>> usuario = [
-    {"id": 1, "email": "prueba@gmail.com", "password": "123456"}
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +97,18 @@ class _LoginState extends State<Login> {
     );
   }
 
-  validarUsuario(String inEmail, String inPassword) {
-    if (inEmail != usuario[0]["email"] || inPassword != usuario[0]["password"]) {
-      return false; //TODO modo dev: true
+  validarUsuario(String inEmail, String inPassword) async {
+    Map<String, dynamic> response = await LoginService.loginUser(correo: inEmail, clave: inPassword);
+    if (response.containsKey('Validacion')) {
+      String validacion = response["Validacion"];
+      if (validacion == "Error") {
+        String mensaje = response["Mensaje"];
+        MessageDialog.mostrar(context, validacion, mensaje);
+      }
+
+      if (validacion == "OK") {
+        Navigator.pushNamed(context, "/Home");
+      }
     }
-    return true;
   }
 }
