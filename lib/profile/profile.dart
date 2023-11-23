@@ -1,5 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_shoes/components/buttonBar.dart';
+import 'package:app_shoes/components/global.dart';
 import 'package:app_shoes/components/messageDialog.dart';
+import 'package:app_shoes/profile/profileService.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -18,6 +22,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    cargarInfo();
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -151,6 +156,26 @@ class _ProfileState extends State<Profile> {
       ),
       bottomNavigationBar: CustomBottomAppBar(),
     );
+  }
+
+  cargarInfo() async {
+    Map<String, dynamic> response = await ProfileService.informationProfile(id: GlobalVariables.user);
+    if (response.containsKey('Validacion')) {
+      String validacion = response["Validacion"];
+      if (validacion == "Error") {
+        String mensaje = response["Mensaje"];
+        MessageDialog.mostrar(context, validacion, mensaje);
+        Navigator.popAndPushNamed(context, "/Login");
+      }
+      if (validacion == "OK") {
+        final row = response["row"];
+        nombreController.text = row["nombre"];
+        paisController.text = row["pais"];
+        ciudadController.text = row["ciudad"];
+        emailController.text = row["correo"];
+        direccionController.text = row["direccion"];
+      }
+    }
   }
 
   validarCampos(String nombre, String pais, String ciudad, String email, String direccion) {

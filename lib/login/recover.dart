@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_shoes/components/messageDialog.dart';
+import 'package:app_shoes/login/recoverService.dart';
 import 'package:flutter/material.dart';
 
 class RecoverPassword extends StatefulWidget {
@@ -55,7 +58,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                     ),
                     onPressed: () {
                       if (validarUsuario(emailController.text)) {
-                        Navigator.pushNamed(context, "/Login");
+                        recoverPassword(emailController.text);
                       } else {
                         MessageDialog.mostrar(context, "Alerta!", "Completar campos.");
                       }
@@ -74,6 +77,22 @@ class _RecoverPasswordState extends State<RecoverPassword> {
   validarUsuario(String inEmail) {
     if (inEmail.isEmpty) {
       return false;
+    }
+    return true;
+  }
+
+  recoverPassword(String inEmail) async {
+    Map<String, dynamic> response = await RecoverService.recoverUser(correo: inEmail);
+    if (response.containsKey('Validacion')) {
+      String validacion = response["Validacion"];
+      if (validacion == "Error") {
+        String mensaje = response["Mensaje"];
+        MessageDialog.mostrar(context, validacion, mensaje);
+      }
+      if (validacion == "OK") {
+        MessageDialog.mostrar(context, "Mensaje", "Su nueva contraseña es: 123456");
+        //TODO Direccionar a login
+      }
     }
     return true;
   }

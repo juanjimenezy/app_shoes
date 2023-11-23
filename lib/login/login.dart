@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:app_shoes/components/global.dart';
 import 'package:app_shoes/components/messageDialog.dart';
 import 'package:app_shoes/login/loginService.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +69,9 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onPressed: () {
-                      if (validarUsuario(emailController.text, passwordController.text)) {
+                      if (!validarUsuario(emailController.text, passwordController.text)) {
+                        MessageDialog.mostrar(context, "Alerta!", "Ingrese los campos.");
+                      } else if (logear(emailController.text, passwordController.text)) {
                         Navigator.pushNamed(context, "/Home");
                       } else {
                         MessageDialog.mostrar(context, "Alerta!", "Email o contraseña incorrectos.");
@@ -97,7 +102,14 @@ class _LoginState extends State<Login> {
     );
   }
 
-  validarUsuario(String inEmail, String inPassword) async {
+  validarUsuario(String inEmail, String inPassword) {
+    if (inEmail.isEmpty || inPassword.isEmpty) {
+      return false;
+    }
+    return true;
+  }
+
+  logear(String inEmail, String inPassword) async {
     Map<String, dynamic> response = await LoginService.loginUser(correo: inEmail, clave: inPassword);
     if (response.containsKey('Validacion')) {
       String validacion = response["Validacion"];
@@ -105,8 +117,9 @@ class _LoginState extends State<Login> {
         String mensaje = response["Mensaje"];
         MessageDialog.mostrar(context, validacion, mensaje);
       }
-
       if (validacion == "OK") {
+        final row = response["row"];
+        GlobalVariables.user = row["id"];
         Navigator.pushNamed(context, "/Home");
       }
     }
