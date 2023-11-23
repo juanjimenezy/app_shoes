@@ -22,7 +22,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    cargarInfo();
+    loadData();
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -58,7 +58,7 @@ class _ProfileState extends State<Profile> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: nombreController,
-                      decoration: const InputDecoration(hintText: "Nombre", border: InputBorder.none),
+                      decoration: const InputDecoration(hintText: "Nombre", border: InputBorder.none, labelText: "Nombre"),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -68,7 +68,7 @@ class _ProfileState extends State<Profile> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: paisController,
-                      decoration: const InputDecoration(hintText: "Pais", border: InputBorder.none),
+                      decoration: const InputDecoration(hintText: "Pais", border: InputBorder.none, labelText: "Pais"),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -78,7 +78,7 @@ class _ProfileState extends State<Profile> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: ciudadController,
-                      decoration: const InputDecoration(hintText: "Ciudad", border: InputBorder.none),
+                      decoration: const InputDecoration(hintText: "Ciudad", border: InputBorder.none, labelText: "Ciudad"),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -88,7 +88,7 @@ class _ProfileState extends State<Profile> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: emailController,
-                      decoration: const InputDecoration(hintText: "Email", border: InputBorder.none),
+                      decoration: const InputDecoration(hintText: "Email", border: InputBorder.none, labelText: "Email"),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -98,7 +98,7 @@ class _ProfileState extends State<Profile> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: direccionController,
-                      decoration: const InputDecoration(hintText: "Dirección", border: InputBorder.none),
+                      decoration: const InputDecoration(hintText: "Dirección", border: InputBorder.none, labelText: "Direcccion"),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -111,8 +111,9 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     onPressed: () {
-                      String r = validarCampos(nombreController.text, paisController.text, ciudadController.text, emailController.text, direccionController.text);
+                      String r = validateInfo(nombreController.text, paisController.text, ciudadController.text, emailController.text, direccionController.text);
                       if (r == "S") {
+                        updateData(nombreController.text, paisController.text, ciudadController.text, emailController.text, direccionController.text);
                         Navigator.pushNamed(context, "/Home");
                       } else {
                         MessageDialog.mostrar(context, "Alerta", r);
@@ -158,7 +159,7 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  cargarInfo() async {
+  loadData() async {
     Map<String, dynamic> response = await ProfileService.informationProfile(id: GlobalVariables.user);
     if (response.containsKey('Validacion')) {
       String validacion = response["Validacion"];
@@ -178,10 +179,14 @@ class _ProfileState extends State<Profile> {
     }
   }
 
-  validarCampos(String nombre, String pais, String ciudad, String email, String direccion) {
+  validateInfo(String nombre, String pais, String ciudad, String email, String direccion) {
     if (nombre.isEmpty || email.isEmpty || pais.isEmpty || ciudad.isEmpty || direccion.isEmpty) {
       return "Completar todos los campos.";
     }
     return "S";
+  }
+
+  updateData(String nombre, String pais, String ciudad, String email, String direccion) async {
+    Map<String, dynamic> response = await ProfileService.updateInformation(id: GlobalVariables.user, nombre: nombre, pais: pais, ciudad: ciudad, direccion: direccion, correo: email);
   }
 }

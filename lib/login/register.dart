@@ -14,6 +14,8 @@ class _RegisterState extends State<Register> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController rePasswordController = TextEditingController();
+  bool _obscureText = true;
+  bool _obscureText2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,11 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: emailController,
-                      decoration: const InputDecoration(hintText: "Email", border: InputBorder.none),
+                      decoration: const InputDecoration(
+                        hintText: "Email",
+                        border: InputBorder.none,
+                        labelText: "Email",
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -55,7 +61,7 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: nombreController,
-                      decoration: const InputDecoration(hintText: "Nombre", border: InputBorder.none),
+                      decoration: const InputDecoration(hintText: "Nombre", border: InputBorder.none, labelText: "Nombre"),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -65,7 +71,21 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: passwordController,
-                      decoration: const InputDecoration(hintText: "Contraseña", border: InputBorder.none),
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
+                          hintText: "Contraseña",
+                          border: InputBorder.none,
+                          labelText: "Contraseña",
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText ? Icons.visibility : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          )),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -75,7 +95,21 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: rePasswordController,
-                      decoration: const InputDecoration(hintText: "Repetir contraseña", border: InputBorder.none),
+                      obscureText: _obscureText2,
+                      decoration: InputDecoration(
+                          hintText: "Repetir contraseña",
+                          border: InputBorder.none,
+                          labelText: "Repetir Contraseña",
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText2 ? Icons.visibility : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText2 = !_obscureText2;
+                              });
+                            },
+                          )),
                     ),
                   ),
                   const SizedBox(height: 10.0),

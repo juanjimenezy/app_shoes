@@ -65,6 +65,13 @@ class _RecoverPasswordState extends State<RecoverPassword> {
                     },
                     child: const Text("Recuperar", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "PTSerif")),
                   ),
+                  const SizedBox(height: 10.0),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Volver", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")),
+                  )
                 ],
               )
             ],
