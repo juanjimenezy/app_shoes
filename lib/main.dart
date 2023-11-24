@@ -6,6 +6,7 @@ import 'package:app_shoes/login/recover.dart';
 import 'package:app_shoes/login/register.dart';
 import 'package:app_shoes/shop/catalogue.dart';
 import 'package:app_shoes/shop/history.dart';
+import 'package:app_shoes/shop/shoe.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,6 +32,7 @@ class AppShoes extends StatelessWidget {
         "/Home": (context) => const Home(),
         "/Profile": (context) => const Profile(),
         "/Catalogue": (context) => const Catalogue(),
+        "/Shoe": (context) => const Shoe(),
         "/History": (context) => const ShopHistory(),
       },
     );

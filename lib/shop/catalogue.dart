@@ -57,7 +57,7 @@ class _CatalogueState extends State<Catalogue> {
                   final zapato = zapatos[index];
                   return InkWell(
                     onTap: () {
-                      // Acción al hacer clic en el elemento
+                      Navigator.pushNamed(context, "/Shoe", arguments: zapato);
                     },
                     child: Container(
                       decoration: BoxDecoration(
