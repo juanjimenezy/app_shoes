@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
                   height: 200,
                   child: GestureDetector(
                     onTap: () {
-                      ruta = "nike";
+                      ruta = "1";
                       Navigator.pushNamed(context, '/Catalogue', arguments: ruta);
                     },
                     child: const Image(
@@ -44,8 +44,12 @@ class _HomeState extends State<Home> {
                   height: 200,
                   child: GestureDetector(
                     onTap: () {
-                      ruta = "adidas";
-                      Navigator.pushNamed(context, '/Catalogue', arguments: ruta);
+                      ruta = "2";
+                      Navigator.pushNamed(
+                        context,
+                        '/Catalogue',
+                        arguments: ruta,
+                      );
                     },
                     child: const Image(
                       image: AssetImage(
@@ -58,7 +62,7 @@ class _HomeState extends State<Home> {
                   height: 200,
                   child: GestureDetector(
                     onTap: () {
-                      ruta = "puma";
+                      ruta = "3";
                       Navigator.pushNamed(context, '/Catalogue', arguments: ruta);
                     },
                     child: const Image(

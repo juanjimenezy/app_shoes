@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously, unnecessary_import
+
 import 'package:app_shoes/components/buttonBar.dart';
 import 'package:flutter/material.dart';
+import 'package:app_shoes/shop/catalogueservice.dart';
 import 'package:flutter/rendering.dart';
 
 class Catalogue extends StatefulWidget {
@@ -10,12 +13,14 @@ class Catalogue extends StatefulWidget {
 }
 
 class _CatalogueState extends State<Catalogue> {
+  List<Map<String, dynamic>> zapatos = [];
+  String bandera = "S";
+
   @override
   Widget build(BuildContext context) {
-    final String arg = ModalRoute.of(context)!.settings.arguments as String;
+    final String id = ModalRoute.of(context)!.settings.arguments as String;
 
-    final List<Map<String, dynamic>> zapatos = [];
-
+    loadShoes(id);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -33,7 +38,7 @@ class _CatalogueState extends State<Catalogue> {
                 const SizedBox(height: 40.0),
                 Image(
                   image: AssetImage(
-                    'assets/img/${arg}_logo.png',
+                    'assets/img/${id}_logo.png',
                   ),
                   height: 150,
                   width: 150,
@@ -63,7 +68,7 @@ class _CatalogueState extends State<Catalogue> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'assets/img/${zapato["idImg"]}.png',
+                            '${zapato["img"]}',
                             width: 150,
                             height: 100,
                           ),
@@ -81,5 +86,15 @@ class _CatalogueState extends State<Catalogue> {
       ),
       bottomNavigationBar: CustomBottomAppBar(),
     );
+  }
+
+  loadShoes(String id) async {
+    if (bandera == "S") {
+      List<Map<String, dynamic>> response = await CatalogueService.getAll(id: id);
+      setState(() {
+        zapatos = response;
+      });
+    }
+    bandera = "N";
   }
 }
