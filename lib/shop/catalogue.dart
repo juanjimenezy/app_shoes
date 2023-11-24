@@ -14,20 +14,7 @@ class _CatalogueState extends State<Catalogue> {
   Widget build(BuildContext context) {
     final String arg = ModalRoute.of(context)!.settings.arguments as String;
 
-    final List<Map<String, dynamic>> zapatos = [
-      {"id": 1, "nombre": "AF1", "idImg": "nikeaf1"},
-      {"id": 2, "nombre": "Jordan", "idImg": "nikejordan"},
-      {"id": 3, "nombre": "AirMax", "idImg": "nikeairmax"},
-      {"id": 4, "nombre": "Dinamyc Fit", "idImg": "nikedinamicfit"},
-      {"id": 1, "nombre": "AF1", "idImg": "nikeaf1"},
-      {"id": 2, "nombre": "Jordan", "idImg": "nikejordan"},
-      {"id": 3, "nombre": "AirMax", "idImg": "nikeairmax"},
-      {"id": 4, "nombre": "Dinamyc Fit", "idImg": "nikedinamicfit"},
-      {"id": 1, "nombre": "AF1", "idImg": "nikeaf1"},
-      {"id": 2, "nombre": "Jordan", "idImg": "nikejordan"},
-      {"id": 3, "nombre": "AirMax", "idImg": "nikeairmax"},
-      {"id": 4, "nombre": "Dinamyc Fit", "idImg": "nikedinamicfit"},
-    ];
+    final List<Map<String, dynamic>> zapatos = [];
 
     return Scaffold(
       body: Container(

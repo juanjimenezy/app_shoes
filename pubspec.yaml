@@ -69,10 +69,43 @@ flutter:
      - assets/img/adidas_logo.png
      - assets/img/nike_logo.png
      - assets/img/puma_logo.png
+    #  Zapatos Nike
      - assets/img/nikeaf1.png
+     - assets/img/nikeaf1w.png
+     - assets/img/nikeaf1y.png
      - assets/img/nikejordan.png
+     - assets/img/nikejordano.png
      - assets/img/nikedinamicfit.png
      - assets/img/nikeairmax.png
+     - assets/img/nikeairmax97.png
+     - assets/img/nikeairmaxb.png
+     - assets/img/nikeairmaxr.png
+     - assets/img/nikeairmaxw.png
+     - assets/img/nikerunning.png
+    #  Zapatos Adidas
+    - assets/img/adidasboxeo.png
+    - assets/img/adidasdc.png
+    - assets/img/adidasdragon.png
+    - assets/img/adidasfutbol.png
+    - assets/img/adidasgazelle.png
+    - assets/img/adidasharricade.png
+    - assets/img/adidasrf.png
+    - assets/img/adidassuperstar.png
+    - assets/img/adidassuperstarb.png
+    - assets/img/adidassuperstarp.png
+    #  Zapatos Puma
+    - assets/img/pumaaire.png
+    - assets/img/pumabotascuero.png
+    - assets/img/pumachanclas.png
+    - assets/img/pumafutbol.png
+    - assets/img/pumafutbol2.png
+    - assets/img/pumaoakley.png
+    - assets/img/pumarunning.png
+    - assets/img/pumaskate.png
+    - assets/img/pumavans.png
+    - assets/img/pumazapatos.png
+
+
      
   fonts:
     - family: PTSerif

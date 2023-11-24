@@ -136,6 +136,7 @@ class _ProfileState extends State<Profile> {
                 right: 0,
                 child: ElevatedButton(
                   onPressed: () {
+                    GlobalVariables.user = "";
                     Navigator.popAndPushNamed(context, "/");
                   },
                   style: ElevatedButton.styleFrom(
