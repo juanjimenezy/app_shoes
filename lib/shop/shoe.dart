@@ -2,7 +2,6 @@
 
 import 'package:app_shoes/components/buttonBar.dart';
 import 'package:flutter/material.dart';
-import 'package:app_shoes/shop/catalogueservice.dart';
 import 'package:flutter/rendering.dart';
 
 class Shoe extends StatefulWidget {
@@ -13,14 +12,14 @@ class Shoe extends StatefulWidget {
 }
 
 class _ShoeState extends State<Shoe> {
-  List<Map<String, dynamic>> zapatos = [];
   String bandera = "S";
+  String selectedColor = 'Negro';
+  String selectedSize = 'Seleccione Talla';
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> zapato = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> shoe = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
-    loadShoe(zapato["id"]);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -29,36 +28,128 @@ class _ShoeState extends State<Shoe> {
             fit: BoxFit.cover, // Ajustar la imagen al tamaño del contenedor
           ),
         ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 40.0),
-                Image(
-                  image: AssetImage(
-                    zapato["img"],
-                  ),
-                  height: 200,
-                  width: 200,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Card(
+                color: Colors.purple.withOpacity(0.2),
+                elevation: 8.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-              ],
-            ),
-          ],
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(top: Radius.circular(16.0)),
+                      child: Image.asset(
+                        shoe['img'],
+                        height: 250,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            shoe['nombre'],
+                            style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, fontFamily: "PTSerif"),
+                          ),
+                          const SizedBox(height: 8.0),
+                          Text(
+                            shoe['lema'],
+                            style: const TextStyle(fontSize: 16.0, color: Colors.grey, fontFamily: "PTSerif"),
+                          ),
+                          const SizedBox(height: 16.0),
+                          Text(
+                            shoe['descripcion'],
+                            style: const TextStyle(fontSize: 16.0, fontFamily: "PTSerif"),
+                          ),
+                          const SizedBox(height: 16.0),
+                          Text(
+                            'Precio: \$${shoe['precio']}',
+                            style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: "PTSerif"),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16.0),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DropdownButton<String>(
+                        value: selectedSize,
+                        items: <String>['Seleccione Talla', '38', '39', '40', '41'].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedSize = newValue!;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Colores:'),
+                      const SizedBox(width: 10.0),
+                      Radio(
+                        value: 'Blanco',
+                        groupValue: selectedColor,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedColor = value.toString();
+                          });
+                        },
+                      ),
+                      const Text('Blanco'),
+                      const SizedBox(width: 12.0),
+                      Radio(
+                        value: 'Negro',
+                        groupValue: selectedColor,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedColor = value.toString();
+                          });
+                        },
+                      ),
+                      const Text('Negro'),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(width: 50.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(onPressed: () {}, child: const Text("Comprar", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif"))),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Volver", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif")))
+                ],
+              )
+            ],
+          ),
         ),
       ),
-      bottomNavigationBar: CustomBottomAppBar(),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
-  }
-
-  loadShoe(String id) async {
-    if (bandera == "S") {
-      List<Map<String, dynamic>> response = await CatalogueService.getAll(id: id);
-      setState(() {
-        zapatos = response;
-      });
-    }
-    bandera = "N";
   }
 }

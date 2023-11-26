@@ -84,7 +84,7 @@ class _CatalogueState extends State<Catalogue> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomAppBar(),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 

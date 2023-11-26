@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomAppBar(),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 }

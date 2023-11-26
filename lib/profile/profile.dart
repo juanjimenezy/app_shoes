@@ -156,7 +156,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomAppBar(),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 
@@ -188,6 +188,6 @@ class _ProfileState extends State<Profile> {
   }
 
   updateData(String nombre, String pais, String ciudad, String email, String direccion) async {
-    Map<String, dynamic> response = await ProfileService.updateInformation(id: GlobalVariables.user, nombre: nombre, pais: pais, ciudad: ciudad, direccion: direccion, correo: email);
+    /*Map<String, dynamic> response =*/ await ProfileService.updateInformation(id: GlobalVariables.user, nombre: nombre, pais: pais, ciudad: ciudad, direccion: direccion, correo: email);
   }
 }

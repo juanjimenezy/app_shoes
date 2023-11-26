@@ -32,7 +32,7 @@ class _ShopHistoryState extends State<ShopHistory> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomAppBar(),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 }
