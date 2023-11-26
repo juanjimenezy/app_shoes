@@ -82,6 +82,5 @@ class _ShopHistoryState extends State<ShopHistory> {
       });
     }
     bandera = "N";
-    print(compras);
   }
 }
