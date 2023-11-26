@@ -1,6 +1,9 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_import
 
 import 'package:app_shoes/components/buttonBar.dart';
+import 'package:app_shoes/components/global.dart';
+import 'package:app_shoes/components/messageDialog.dart';
+import 'package:app_shoes/shop/shoeservice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -137,7 +140,13 @@ class _ShoeState extends State<Shoe> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: const Text("Comprar", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif"))),
+                  ElevatedButton(
+                      onPressed: () async {
+                        if (validarData(selectedSize)) {
+                          registrarCompra(GlobalVariables.user, shoe, selectedSize, selectedColor);
+                        }
+                      },
+                      child: const Text("Comprar", style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: "PTSerif"))),
                   TextButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -151,5 +160,27 @@ class _ShoeState extends State<Shoe> {
       ),
       bottomNavigationBar: const CustomBottomAppBar(),
     );
+  }
+
+  validarData(String talla) {
+    if (talla == "Seleccione Talla") {
+      MessageDialog.mostrar(context, "Aletar!", "Seleccione la talla");
+      return false;
+    }
+    return true;
+  }
+
+  registrarCompra(String idUser, Map<String, dynamic> shoe, String size, String color) async {
+    Map<String, dynamic> response = await ShoeService.register(idUser: idUser, idZapato: shoe['id'], size: size, cantidad: "1", color: color);
+    if (response.containsKey('Validacion')) {
+      String validacion = response["Validacion"];
+      if (validacion == "Error") {
+        String mensaje = response["Mensaje"];
+        MessageDialog.mostrar(context, validacion, mensaje);
+      }
+      if (validacion == "OK") {
+        MessageDialog.mostrar(context, "Mensaje", "Compra exitosa.");
+      }
+    }
   }
 }
